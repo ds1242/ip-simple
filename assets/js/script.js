@@ -17,19 +17,40 @@ const getGeoLoc = () => {
     const geoApiUrl = 'https://geo.ipify.org/api/v2/country,city?apiKey=' + IP_API_KEY + '&ipAddress=';
     console.log(geoApiUrl);
     
-    fetch(geoApiUrl)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data);
-    // position = [data.location.lat, data.location.lng]
-        mymap.flyTo(new L.LatLng(data.location.lat, data.location.lng), 13);
-        marker.setLatLng([data.location.lat, data.location.lng]);
-    })
-    .catch(function(error){
-        console.log(error);
-    })
+    // fetch(geoApiUrl)
+    // .then(function(response){
+    //     return response.json();
+    // })
+    // .then(function(data){
+    //     console.log(data);
+    // // position = [data.location.lat, data.location.lng]
+    //     mymap.flyTo(new L.LatLng(data.location.lat, data.location.lng), 13);
+    //     marker.setLatLng([data.location.lat, data.location.lng]);
+    // })
+    // .catch(function(error){
+    //     console.log(error);
+    // })
+    let lat = 40.61106;
+    let lng = -111.89994;
+    let city = "Midvale";
+    let region = "Utah";
+    let timeZone = "-06:00";
+    let ISP = "Comcast";
+    mymap.flyTo(new L.LatLng(lat, lng), 13);
+    marker.setLatLng([lat, lng]);
+
+    let addressDiv = document.getElementById('address');
+    addressDiv.append(lat + ', ' + lng);
+
+    let locationDiv = document.getElementById('location');
+    locationDiv.append(city + ', ' + region);
+
+    let timeZoneDiv = document.getElementById('timezone');
+    timeZoneDiv.append(timeZone);
+
+    let ispDiv = document.getElementById('isp');
+    ispDiv.append(ISP);
+
 };
 
 
