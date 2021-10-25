@@ -38,11 +38,13 @@ h1 {
     align-items: center; */
 }
 #user-info h3 {
-    color: gray;
+    color: hsl(0, 0%, 59%);
+    font-family: 'Rubik', sans-serif;
 }
 
 #user-info p {
-    color: black;
+    color: hsl(0, 0%, 17%);
+    font-family: 'Rubik', sans-serif;
     font-size: xx-large;
 }
 #ip-address {
