@@ -27,13 +27,28 @@ h1 {
     background-color: hsl(0, 0%, 17%)
 }
 
+#mapid { 
+    height: 63vh; 
+}
 .user-data {
     background-color: white;
-    height: 100px;
+    height: 15vh;
     /* border:  */
     /* display: flex;
     align-items: center; */
 }
-#mapid { 
-    height: 63vh; 
+#user-info h3 {
+    color: gray;
+}
+
+#user-info p {
+    color: black;
+    font-size: xx-large;
+}
+#ip-address {
+    border-radius: 15px 0 0 15px ;
+}
+
+#user-isp {
+    border-radius: 0 15px 15px 0;
 }
