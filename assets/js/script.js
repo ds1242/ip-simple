@@ -1,5 +1,4 @@
-// const { data } = require("jquery");
-
+// Setup map required items
 let mymap = L.map('mapid').setView([0,0], 1);
 let marker = L.marker([0,0]).addTo(mymap);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -8,8 +7,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     tileSize: 512,
     zoomOffset: -1,
 }).addTo(mymap);
-
-
 
 // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 const searchIP = (event) => {
@@ -20,19 +17,22 @@ const searchIP = (event) => {
 };
 
 const getGeoLoc = (ipInput) => {
+    // take IP address in if a user enters one
     let ipAddress = ipInput;
+    // setup API call URL
     let IP_API_KEY = 'at_yUzZqyZxjOKGmxpY3ajwM0wejSj6J';
     const geoApiUrl = 'https://geo.ipify.org/api/v2/country,city?apiKey=' + IP_API_KEY + '&ipAddress=' + ipAddress;
-    console.log(geoApiUrl)
+    
+    // Make API call
     fetch(geoApiUrl)
     .then(function(response){
         return response.json();
     })
     .then(function(data){
-        console.log(data);
+        // update map and move map to IP location
         mymap.flyTo(new L.LatLng(data.location.lat, data.location.lng), 13);
         marker.setLatLng([data.location.lat, data.location.lng]);
-
+        // add information to boxes to display
         let addressDiv = document.getElementById('address');
         addressDiv.innerHTML = data.ip;
 
@@ -52,41 +52,20 @@ const getGeoLoc = (ipInput) => {
 
 
     })
+    // error catch 
     .catch(function(error){
         console.log(error);
     })
-    // let lat = 40.61106;
-    // let lng = -111.89994;
-    // let ip = '192.212.174.101';
-    // let city = "Midvale";
-    // let region = "Utah";
-    // let timeZone = "-06:00";
-    // let ISP = "Comcast";
-    // mymap.flyTo(new L.LatLng(lat, lng), 13);
-    // marker.setLatLng([lat, lng]);
 
-    // let addressDiv = document.getElementById('address');
-    // addressDiv.innerHTML = ip;
-    
-
-    // let locationDiv = document.getElementById('location');
-    // locationDiv.innerHTML = city + ', ' + region;
-
-    // let timeZoneDiv = document.getElementById('timezone');
-    // timeZoneDiv.innerHTML = 'UTC ' + timeZone;
-
-    // let ispDiv = document.getElementById('isp');
-    // ispDiv.innerHTML = ISP;
 
 };
 
-
+// trigger on load to search for current user's ip and location
 window.onload = (event) => {
-    console.log('page is fully loaded');
     let ip = '';
     getGeoLoc(ip);
 };
 
+// event listener to trigger search 
 const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', searchIP);
-// mymap.on('click', getGeoLoc);
