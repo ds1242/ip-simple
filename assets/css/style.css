@@ -19,7 +19,10 @@ h1 {
     color: white;
 
 }
-
+#user-info {
+    margin: auto;
+    width: 80vw;
+}
 #search-button {
     background-color: hsl(0, 0%, 17%)
 }
